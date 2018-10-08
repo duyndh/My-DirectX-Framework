@@ -3,8 +3,7 @@
 #include "GameManager.h"
 #include "GameObject.h"
 #include "Direct3DCore.h"
-#include "Input.h"
-#include <iostream>
+
 LRESULT WINAPI WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	LRESULT result = 0;
@@ -21,7 +20,7 @@ LRESULT WINAPI WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
-{/*
+{
 	Framework::GameManager::IGameManager::Instantiate(hInstance, nShowCmd, SCREEN_WIDTH, SCREEN_HEIGHT, FULL_SCREEN);
 	auto* pGameManager = Framework::GameManager::IGameManager::GetInstance();
 	do
@@ -35,19 +34,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		builderData.transformBuilder = { VECTOR3_ZERO, VECTOR3_ZERO, VECTOR3_ZERO };
 		mario->AddComponent(Framework::Object::EBuilderType::TRANSFORM, builderData);
 		
+		pGameManager->Run();
+
 	} while (false);
 	Framework::GameManager::IGameManager::Release();
-	*/
-	Framework::GameManager::IGameManager::Instantiate(hInstance, nShowCmd, SCREEN_WIDTH, SCREEN_HEIGHT, FULL_SCREEN);
-	auto* pGameManager = Framework::GameManager::IGameManager::GetInstance();
-	do
-	{
-		Framework::Base::CInput::Instantiate();
-		auto p = Framework::Base::CInput::GetInstance();
-		
-		pGameManager->Run();
-	} while (false);
-	
-	
+
 	return 0;
 }
